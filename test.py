@@ -1,4 +1,4 @@
 import subprocess 
 
 def run():
-  print("hello world")
+  subprocess.run(["echo", "Hello from subprocess"], check=True, text=True)
