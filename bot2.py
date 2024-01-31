@@ -1,4 +1,3 @@
-[16:40] Javier Lopez Garriga
 import os
 
 import requests
