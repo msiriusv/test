@@ -3,7 +3,7 @@ import subprocess
 import os
  
 def run():
-    ip = "192.168.43.134"
+    ip = "192.168.222.132"
     port = 8084
  
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
